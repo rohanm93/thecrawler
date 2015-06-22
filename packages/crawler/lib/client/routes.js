@@ -24,3 +24,10 @@ Router.route('/category/:slug1/:slug2', {
     name: 'twocategories',
     controller: PostsTwoCategories
 });
+
+Meteor.startup(function() {
+Router.route('/findplace', {
+    template: getTemplate('findplace')
+});
+});
+

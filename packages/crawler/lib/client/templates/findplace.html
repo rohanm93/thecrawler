@@ -1,0 +1,35 @@
+<template name="findplace">
+	<div>
+  <h1>Find a Place</h1>
+
+</div>
+
+  <div>
+      <label for="subject">Subject:</label>
+      <select id="subject">
+        <option value="1">General Inquiry</option>
+        <option value="2">Advertising</option>
+        <option value="3">Press</option>
+        <option value="5">Account Problems</option>
+        <option value="4">Content Submission</option>
+      </select>
+    </div>
+
+    <div class="formrow">
+      <label for="tags">Tags:</label>
+      <input id="input-tags" type="text" value="website,graphics,question">
+    </div>
+				<script type="text/javascript">
+				$('#input-tags').selectize({
+				    delimiter: ',',
+				    persist: false,
+				    create: function(input) {
+				        return {
+				            value: input,
+				            text: input
+				        }
+				    }
+				});
+				</script>
+
+</template>
