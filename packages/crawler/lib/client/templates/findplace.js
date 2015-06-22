@@ -15,3 +15,17 @@ Posts.views.add("twocategories", function (terms) {
     options: {sort: {sticky: -1, score: -1}} // for now categories views default to the "top" view
   };
 });
+
+Meteor.startup(function () {
+
+	Template[getTemplate('findplace')].helpers({
+  		selectize_options: function() {
+  			var categorylist = [
+					        {slug: 'speakeasy', label: 'Speakeasies'},
+					        {slug: 'cocktails', label: 'Cocktail Bars'},
+					        {slug: 'pub', label: 'Pubs'}
+					    ];
+  			return categorylist;
+  		}
+	});
+});

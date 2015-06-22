@@ -1,35 +1,68 @@
 <template name="findplace">
-	<div>
+	<div align="center">
   <h1>Find a Place</h1>
 
 </div>
 
-  <div>
-      <label for="subject">Subject:</label>
-      <select id="subject">
-        <option value="1">General Inquiry</option>
-        <option value="2">Advertising</option>
-        <option value="3">Press</option>
-        <option value="5">Account Problems</option>
-        <option value="4">Content Submission</option>
-      </select>
+    <div class="row" align="center">
+    		<label for="select-venue">Type of Venue</label>
+      	<select id="select-venue" multiple class="demo-default" style="width:40%">
+		</select>
+		<script>
+				$('#select-venue').selectize({
+						persist: false,
+    					maxItems: null,
+					    valueField: 'slug',
+					    labelField: 'label',
+					    searchField: ['label'],
+					    plugins: ['remove_button'],
+					    options: [
+					        {slug: 'speakeasy', label: 'Speakeasies'},
+					        {slug: 'cocktails', label: 'Cocktail Bars'},
+					        {slug: 'pub', label: 'Pubs'}
+					    ]
+					});
+					</script>
+					<br><br>
+					<label for="select-pricerange">Price Range</label>
+		<select id="select-pricerange" multiple class="demo-default" style="width:40%">
+					<script>
+				$('#select-pricerange').selectize({
+						persist: false,
+    					maxItems: null,
+					    valueField: 'slug',
+					    labelField: 'label',
+					    searchField: ['label'],
+					    plugins: ['remove_button'],
+					    options: [
+					        {slug: 'price-low', label: '£ Very Reasonable'},
+					        {slug: 'price-med', label: '££ Affordable'},
+					        {slug: 'price-high', label: '£££ Expensive'}
+					    ]
+					});
+					</script>
+		</select>
+		<br><br>
+		<label for="select-location">Where</label>
+		<select id="select-location" multiple class="demo-default" style="width:40%">
+					<script>
+				$('#select-location').selectize({
+						persist: false,
+    					maxItems: 2,
+					    valueField: 'slug',
+					    labelField: 'label',
+					    searchField: ['label'],
+					    plugins: ['remove_button'],
+					    options: [
+					        {slug: 'central', label: 'Central London'},
+					        {slug: 'east', label: 'East London'},
+					        {slug: 'west', label: 'West London'},
+					        {slug: 'north', label: 'North London'},
+					        {slug: 'south', label: 'South London'},
+					    ]
+					});
+					</script>
+		</select>
     </div>
-
-    <div class="formrow">
-      <label for="tags">Tags:</label>
-      <input id="input-tags" type="text" value="website,graphics,question">
-    </div>
-				<script type="text/javascript">
-				$('#input-tags').selectize({
-				    delimiter: ',',
-				    persist: false,
-				    create: function(input) {
-				        return {
-				            value: input,
-				            text: input
-				        }
-				    }
-				});
-				</script>
 
 </template>
