@@ -20,9 +20,27 @@ PostsTwoCategories = Posts.controllers.list.extend({
   }
   });
 
+MultipleCategories = Posts.controllers.list.extend({
+
+  data: function () {
+    return {
+      terms: {
+        view: 'multipleCategories',
+        slug1: this.params.slug1,
+        slug2: this.params.slug2
+      }
+    }
+  }
+  });
+
 Router.route('/category/:slug1/:slug2', {
     name: 'twocategories',
     controller: PostsTwoCategories
+});
+
+Router.route('/category/:slug1/:slug2', {
+    name: 'twocategories',
+    controller: MultipleCategories
 });
 
 Meteor.startup(function() {
