@@ -8,54 +8,55 @@
     		<label for="select-venue">Type of Venue</label>
       	<select id="select-venue" multiple class="demo-default" style="width:40%">
 		</select>
+							<br><br>
+					<label for="select-pricerange">Price Range</label>
+		<select id="select-pricerange" multiple class="demo-default" style="width:40%">
+		</select>
+		<br><br>
+		<label for="select-location">Where</label>
+		<select id="select-location" multiple class="demo-default" style="width:40%">
+		
+		</select>
+		<br><br>
+		<button type="button" onClick="generateLink()">generate link</button>
+		<p id="demo"></p>
 		<script>
-				$('#select-venue').selectize({
+					var $selectvenue = $('#select-venue').selectize({
 						persist: false,
     					maxItems: null,
 					    valueField: 'slug',
 					    labelField: 'label',
 					    searchField: ['label'],
 					    plugins: ['remove_button'],
-					    closeAfterSelect: true,
+					    closeAfterSelect: false,
 					    options: [
 					        {slug: 'speakeasy', label: 'Speakeasies'},
 					        {slug: 'cocktails', label: 'Cocktail Bars'},
 					        {slug: 'pub', label: 'Pubs'}
 					    ]
 					});
-					</script>
-					<br><br>
-					<label for="select-pricerange">Price Range</label>
-		<select id="select-pricerange" multiple class="demo-default" style="width:40%">
-					<script>
-				$('#select-pricerange').selectize({
+					var $selectprice = $('#select-pricerange').selectize({
 						persist: false,
     					maxItems: null,
 					    valueField: 'slug',
 					    labelField: 'label',
 					    searchField: ['label'],
 					    plugins: ['remove_button'],
-					    closeAfterSelect: true,
+					    closeAfterSelect: false,
 					    options: [
 					        {slug: 'price-low', label: '£ Very Reasonable'},
 					        {slug: 'price-med', label: '££ Affordable'},
 					        {slug: 'price-high', label: '£££ Expensive'}
 					    ]
 					});
-					</script>
-		</select>
-		<br><br>
-		<label for="select-location">Where</label>
-		<select id="select-location" multiple class="demo-default" style="width:40%">
-					<script>
-				$('#select-location').selectize({
+					var $selectlocation = $('#select-location').selectize({
 						persist: false,
     					maxItems: 2,
 					    valueField: 'slug',
 					    labelField: 'label',
 					    searchField: ['label'],
 					    plugins: ['remove_button'],
-					    closeAfterSelect: true,
+					    closeAfterSelect: false,
 					    options: [
 					        {slug: 'central', label: 'Central London'},
 					        {slug: 'east', label: 'East London'},
@@ -64,8 +65,28 @@
 					        {slug: 'south', label: 'South London'},
 					    ]
 					});
-					</script>
-		</select>
+
+					function generateLink() {
+						var venues = $selectvenue[0].selectize.getValue();
+						var prices = $selectprice[0].selectize.getValue();
+						var locations = $selectlocation[0].selectize.getValue();
+						url = "/venue"
+						for (i = 0; i &lt; venues.length; i++) { 
+          					url += "/" + venues[i];
+      					}
+      					url += "/price";
+				      	for (i = 0; i &lt; prices.length; i++) { 
+				          	url += "/" + prices[i];
+				      	}
+				      	url += "/where";
+				      	for (i = 0; i &lt; locations.length; i++) { 
+				          url += "/" + locations[i];
+				      	}
+						document.getElementById("demo").innerHTML = url;
+						window.location.href = url;
+						}
+				</script>
+
     </div>
 
 </template>

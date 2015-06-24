@@ -112,16 +112,3 @@ Posts.views.add("multipleCategories", function (terms) {
   };
 });
 
-Meteor.startup(function () {
-
-	Template[getTemplate('findplace')].helpers({
-  		selectize_options: function() {
-  			var categorylist = [
-					        {slug: 'speakeasy', label: 'Speakeasies'},
-					        {slug: 'cocktails', label: 'Cocktail Bars'},
-					        {slug: 'pub', label: 'Pubs'}
-					    ];
-  			return categorylist;
-  		}
-	});
-});
